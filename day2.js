@@ -59,3 +59,42 @@ for (let index = 0; index < students.length; index++) {
     
     
 }
+console.log("while");
+
+let i=0;
+while(i<students.length)
+{
+    const s= students[i];
+    console.log(s);
+    i++;
+}
+
+
+
+console.log("===================== Function =============================");
+function fun() {
+    console.log("in fun 1");
+    
+}
+fun();
+function fun2(num1, num2)
+{
+   console.log(num1+num2);
+   
+}
+fun2(10,20);
+function fun3(name, age=23)
+{
+    const msg = name +"your age is "+age;
+    console.log(msg);
+    
+}
+fun3("AA",28);
+function fun4(num1, num2) 
+{
+ console.log(num1 + num2);
+ return "hi";
+}
+let res=fun4(22,22);
+console.log(res);
+
