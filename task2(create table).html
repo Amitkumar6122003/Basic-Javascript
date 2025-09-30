@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Multiplication Tables Range</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        h1 {
+            color: darkblue;
+            margin-bottom: 20px;
+        }
+        .table-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+        table {
+            border-collapse: collapse;
+            margin: 5px;
+            text-align: center;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 5px 10px;
+        }
+        .red {
+            background-color: #ff9999; /* light red */
+        }
+        .yellow {
+            background-color: #ffff99; /* light yellow */
+        }
+        .heading {
+            text-align: center;
+            font-weight: bold;
+            background: #ccc;
+        }
+        .inputs {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Multiplication Table Generator</h1>
+
+    <div class="inputs">
+        <input type="number" id="from" placeholder="From">
+        <input type="number" id="to" placeholder="To">
+        <button id="btn">Print Tables</button>
+    </div>
+
+    <div class="table-container" id="tables"></div>
+
+<script>
+    let btn = document.getElementById('btn');
+    let container = document.getElementById('tables');
+
+    btn.addEventListener('click', () => {
+        container.innerHTML = ''; // clear previous tables
+
+        let from = parseInt(document.getElementById('from').value);
+        let to = parseInt(document.getElementById('to').value);
+
+        // validation
+        if (isNaN(from) || isNaN(to) || from > to) {
+            alert("⚠ Please enter a valid range (From <= To)");
+            return;
+        }
+
+        for (let num = from; num <= to; num++) {
+            let tbl = document.createElement('table');
+
+            // assign color
+            if (num % 2 === 1) {
+                tbl.classList.add('red');
+            } else {
+                tbl.classList.add('yellow');
+            }
+
+            // add heading row inside table
+            let headingRow = document.createElement('tr');
+            let headingCell = document.createElement('th');
+            headingCell.colSpan = 2;
+            headingCell.classList.add('heading');
+            headingCell.innerText = `Table of ${num}`;
+            headingRow.appendChild(headingCell);
+            tbl.appendChild(headingRow);
+
+            // create rows (1 to 10)
+            for (let i = 1; i <= 10; i++) {
+                let tr = document.createElement('tr');
+
+                let td1 = document.createElement('td');
+                td1.innerText = `${num} × ${i}`;
+
+                let td2 = document.createElement('td');
+                td2.innerText = num * i;
+
+                tr.appendChild(td1);
+                tr.appendChild(td2);
+                tbl.appendChild(tr);
+            }
+
+            container.appendChild(tbl);
+        }
+    });
+</script>
+</body>
+</html>
